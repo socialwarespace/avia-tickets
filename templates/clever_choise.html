@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#selecter {
+			display: none;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		ancor = 0
+		
+		function choose () {
+			box = document.getElementById("selecter")
+			s = box.options[box.selectedIndex].value
+			ancor = 3
+			$("#city").val(s)
+			$("#selecter").css('display', 'none')
+		}
+		function start () {
+			box = document.getElementById("selecter")
+			s = box.options[box.selectedIndex].value
+			ancor = 3	
+			$("#city").val(s)		
+		}
+		function lose () {
+			$("#selecter").css('display', 'none')
+		}
+		window.setInterval(function(){
+			if ($("#city").val().length >= 3) {
+				if (ancor != $("#city").val().length) {
+					ancor = $("#city").val().length
+					$("#selecter").css('display', 'block')
+					s = ""
+					for (n in cities) {
+						c = cities[n]
+						if ((c[0].toLowerCase()+c[1].toLowerCase()).indexOf($("#city").val().toLowerCase()) >= 0) {
+							s += '<option value="' + c[0] + '">' + c[1] + '</option>'
+						}
+					}
+					if (s=='') {
+						s = 'Такой город не найден'
+					}
+					$("#selecter").html(s)
+				}
+			}
+			else {
+				ancor = 0
+				$("#selecter").css('display', 'none')
+				$("#city").attr('list', '')
+			}
+		})
+		cities = [{% for n in cities %}['{{n[0]}}', '{{n[1]}}'], {% endfor %}]
+	</script>
+</head>
+<body>
+	<form action="">
+		<input type="text" id="city">
+		<br>
+		<br>
+		<br>
+		<select name="" id="selecter" onchange="choose()" onclick="start()" onblur="lose()">
+			<option value="mow">Moscow</option>
+			<option value="osl">Oslo</option>
+		</select>
+	</form>
+
+	
+</body>
+</html>

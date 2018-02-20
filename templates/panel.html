@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Panel</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=cyrillic-ext" rel="stylesheet">
+	<style>
+		body * {
+			font-family: 'Open Sans', sans-serif;
+		}
+		section {
+			position: absolute;
+			left: 20%;
+			right: 20%;
+		}
+		@media only screen and (max-device-width: 480px) {
+			body * {
+				font-size: 35px;
+			}
+			section {
+				left: 5%;
+				right: 5%;
+			}
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		/*setInterval(function() {
+			$.ajax({
+			  type: "GET",
+			  url: "/load_log",
+			}).done(function( o ) {
+				$("#output").html(o)
+			})
+	    }, 100);*/
+		$(document).ready(function () {
+
+			$.ajax({
+			  type: "GET",
+			  url: "/work?{% for n in args %}{{n}}={{args[n]}}&{% endfor %}",
+			}).done(function( o ) {
+			   $("#output").html("<a href='/'>Назад</a><br><br>"+o.result)
+			});
+
+		})
+	</script>
+</head>
+<body>
+	<section>
+		<p class="log" id="output">
+			<h1>Идет поиск билетов в {{args['city']}}</h1>
+			<img src="https://mitra.ru/local/templates/main/static/img/port_loader.gif" alt="">
+		</p>
+		<p style="display: none" class="result"></p>
+	</section>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=cyrillic-ext" rel="stylesheet">
+	<style>
+		body * {
+			font-family: 'Open Sans', sans-serif;
+		}
+		section {
+			position: absolute;
+			left: 20%;
+			right: 20%;
+		}
+		a {
+			text-decoration: none;
+		}
+		ul {
+			margin-top: 50px;
+		}
+		li {
+			list-style: none;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		ancor = 0
+		ancor2 = 0
+		window.setInterval(function(){
+			if ($("#city").val().length >= 3) {
+				if (ancor == 1) {
+				}
+				else {
+					ancor = 1
+					$("#city").attr('list', 'cities')
+				}
+			}
+			else {
+				ancor = 0
+				$("#city").attr('list', '')
+			}
+			if ($("#origin").val().length >= 3) {
+				if (ancor2 == 1) { 
+				}
+				else {
+					ancor2 = 1
+					$("#origin").attr('list', 'cities')
+				}
+			}
+			else {
+				ancor2 = 0
+				$("#origin").attr('list', '')
+			}
+		}, 10)
+	</script>
+</head>
+<body>
+	<section>
+		<h1>Real Avia</h1>
+		<p>Найдем самые дешевые билеты в выбранный Вами временной интервал</p>
+		<form action="panel">
+			Откуда: <input type="text" name="origin" value="" id="origin">  Куда: <input type="text" name="city" value="" id="city">
+			<datalist id="cities">
+				{% for n in cities %}<option value="{{n[0]}}">{{n[1]}}</option>{% endfor %}
+			</datalist>
+			<br>С: <input type="text" name="start" value="20170501">  До: <input type="text" name="end" value="20170509"><br>Мин дней: <input type="text" name="days" value="4"><br><div style="display:none">Макс пересадок: <input type="text" name="trans" value="1">  </div>В один конец: <label>нет&nbsp;<input type="radio" name="one_way" value="false" checked></label> <label>да&nbsp;<input type="radio" name="one_way" value="true"></label><br><input type="submit" value="Поиск">
+		</form>
+		<ul>
+			<h2>Наши interests</h2>
+			<li><a href="/panel?start=20170517&end=20170531&origin=MOW&city=LCA&trans=1&one_way=false&days=4">Ларнака в конце мая</a></li>
+			<li><a href="/panel?start=20170701&end=20170820&origin=MOW&city=FRA&trans=1&one_way=true&days=4">Франкфурт летом</a></li>
+			<li><a href="/panel?start=20170608&end=20170820&origin=MOW&city=OSL&trans=1&one_way=false&days=4">Осло летом</a></li>
+		</ul>
+	</section>
+
+</body>
+</html>

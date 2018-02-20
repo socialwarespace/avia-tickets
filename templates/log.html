@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="refresh" content="1">
+	<title>Log</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+		setInterval(function() {
+			location.reload()
+			/*$.ajax({
+			  type: "GET",
+			  url: "/load_log",
+			}).done(function( o ) {
+				$("#output").html(o)
+			})*/
+		}, 1000)
+	</script>
+</head>
+<body>
+	{{log}}
+	<!--<div id="output"></div>-->
+	
+</body>
+</html>

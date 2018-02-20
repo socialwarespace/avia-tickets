@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>TICKETS</title>
+	<style>
+		section {
+			position: absolute;
+			left: 20%;
+			right: 20%;
+		}
+		form {
+			width: 80%;
+		}
+		input[type="text"] {
+			width: 2ex;
+		}
+		input.mid {
+			width: 3ex;
+		}
+		input.big {
+			width: 9ex;
+		}
+		span {
+			margin: 10px 0px;
+			display: block;
+			float: left;
+			box-sizing: border-box;
+			width: 50%;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<h1>Билеты из Москву в Осло</h1>
+		<p>Самые дешевые варианты на выбранный вами период</p>
+		<form action="find_osl">
+			<span>С: <input type="text" name="start" value="20170415" class="big"></span><span>До:<input type="text" name="end" value="20170830" class="big"></span><br><span>Мин дней:<input type="text" name="days" value="4" class="mid"></span><span>Макс пересадок:<input type="text" name="trans" value="1"></span><br><span>В один конец: <label><input type="radio" name="one_way" value="false" checked>нет</label>  <label><input type="radio" name="one_way" value="true">да</label></span><br><span style="width: 100%"><input type="submit" value="Поиск"></span>
+		</form>
+	</section>
+</body>
+</html>
